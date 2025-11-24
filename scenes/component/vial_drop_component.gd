@@ -1,7 +1,8 @@
 extends Node
 
-@export var vial_scene: PackedScene
+@export_range(0, 1) var drop_percent: float = .5
 @export var health_component: Node
+@export var vial_scene: PackedScene
 
 
 func _ready():
@@ -9,6 +10,9 @@ func _ready():
 
 
 func on_died():
+	if randf() > drop_percent:
+		return
+	
 	if vial_scene == null:
 		return
 	
